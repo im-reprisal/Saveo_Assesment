@@ -5,7 +5,6 @@ import com.example.myapplication.paggination.MoviePagingRepo
 
 class MainViewModel:ViewModel() {
 
-    private val peopleRepo = MoviePagingRepo()
-
-    fun searchMovieList() = peopleRepo.getPagesList()
+    private val movieRepo = MoviePagingRepo()
+    fun showMovieList() = movieRepo.getPagesList()
 }

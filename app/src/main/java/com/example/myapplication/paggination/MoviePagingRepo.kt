@@ -7,7 +7,7 @@ import androidx.paging.liveData
 class MoviePagingRepo {
     fun getPagesList() = Pager(
         config = PagingConfig(
-            pageSize = 20
+            pageSize = 300
         ),
         pagingSourceFactory = { MoviePagingSource() }
     ).liveData

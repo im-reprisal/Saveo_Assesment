@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
     private fun setAdapter() {
-        mainAdapter = MainAdapter()
+        mainAdapter = MainAdapter(this)
         val linearLayoutManager = GridLayoutManager(this, 3)
         binding.recyclerView.apply {
             layoutManager = linearLayoutManager

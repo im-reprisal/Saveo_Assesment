@@ -1,19 +1,18 @@
 package com.example.myapplication.ui.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.example.myapplication.R
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myapplication.data.models.ResponseModelItem
+import com.example.myapplication.databinding.AdapterItemLayoutBinding
 import com.example.myapplication.ui.DetailsActivity
-import com.example.myapplication.ui.viewholder.MainViewHolder
-import kotlinx.android.synthetic.main.item_layout.view.*
 
-
-class MainAdapter : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
-
+class MainAdapter(val context: Context) : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
    companion object{
        val diffUtil = object:DiffUtil.ItemCallback<ResponseModelItem>(){
            override fun areItemsTheSame(
@@ -32,23 +31,19 @@ class MainAdapter : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUti
    }
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val tvMovieResponseItem = getItem(position)
-        holder.itemView.apply {
-            onClickConstrainLayout.setOnClickListener {
-                val intent= Intent(context, DetailsActivity::class.java)
-                intent.putExtra("name",tvMovieResponseItem?.name)
-                context.startActivity(intent)
-            }
-        }
-        tvMovieResponseItem?.let {
-            holder.setData(it)
+        val itemLayoutBinding = holder.adapterItemLayoutBinding as AdapterItemLayoutBinding
+        Glide.with(context).load(tvMovieResponseItem?.image?.medium).into(itemLayoutBinding.ivImgShow)
+        itemLayoutBinding.onClickCardView.setOnClickListener {
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra("name",tvMovieResponseItem?.name)
+            context.startActivity(intent)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-//        val layoutInflater = LayoutInflater.from(parent.context)
-//        val itemLayoutBinding: ItemLayoutBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_layout, parent, false)
-//        return MainViewHolder(itemLayoutBinding)
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout,parent,false)
-        return MainViewHolder(view)
+        val itemLayoutBinding = AdapterItemLayoutBinding.inflate(LayoutInflater.from(context), parent, false)
+        return MainViewHolder(itemLayoutBinding)
     }
 }
+
+class MainViewHolder(val adapterItemLayoutBinding: AdapterItemLayoutBinding): RecyclerView.ViewHolder(adapterItemLayoutBinding.root)

@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.data.models.ResponseModelItem
 import kotlinx.android.synthetic.main.item_layout.view.*
 
+
 class MainViewHolder(private val view: View):RecyclerView.ViewHolder(view) {
     fun setData(movieResponseItem: ResponseModelItem){
         view.apply {

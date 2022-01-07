@@ -11,6 +11,7 @@ import com.example.myapplication.ui.DetailsActivity
 import com.example.myapplication.ui.viewholder.MainViewHolder
 import kotlinx.android.synthetic.main.item_layout.view.*
 
+
 class MainAdapter : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
 
    companion object{
@@ -44,7 +45,10 @@ class MainAdapter : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUti
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout,parent,false)
+//        val layoutInflater = LayoutInflater.from(parent.context)
+//        val itemLayoutBinding: ItemLayoutBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_layout, parent, false)
+//        return MainViewHolder(itemLayoutBinding)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout,parent,false)
         return MainViewHolder(view)
     }
 }

@@ -6,11 +6,10 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.data.models.ResponseModelItem
 import kotlinx.android.synthetic.main.item_layout.view.*
 
-
 class MainViewHolder(private val view: View):RecyclerView.ViewHolder(view) {
-    fun setData(peopleResponseItem: ResponseModelItem){
+    fun setData(movieResponseItem: ResponseModelItem){
         view.apply {
-            Glide.with(this).load(peopleResponseItem.image.medium).into(ivImgShow)
+            Glide.with(this).load(movieResponseItem.image.medium).into(ivImgShow)
         }
     }
 }

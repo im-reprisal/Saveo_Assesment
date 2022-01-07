@@ -7,10 +7,17 @@
     android:elevation="30sp"
     app:cardCornerRadius="5dp"
     app:cardElevation="10dp">
-    <ImageView
-        android:id="@+id/ivImgShow"
-        android:transitionName="image_transition"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/onClickConstrainLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_130sdp"
-        android:scaleType="centerCrop" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivImgShow"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

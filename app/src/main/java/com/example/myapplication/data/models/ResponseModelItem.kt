@@ -1,8 +1,6 @@
 package com.example.myapplication.data.models
 
-
 import com.google.gson.annotations.SerializedName
-
 data class ResponseModelItem(
     @SerializedName("averageRuntime")
     val averageRuntime: Int,

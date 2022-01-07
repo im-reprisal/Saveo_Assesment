@@ -1,14 +1,18 @@
 package com.example.myapplication.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
 import com.example.myapplication.data.models.ResponseModelItem
+import com.example.myapplication.ui.DetailsActivity
 import com.example.myapplication.ui.viewholder.MainViewHolder
+import kotlinx.android.synthetic.main.item_layout.view.*
 
 class MainAdapter : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
+
    companion object{
        val diffUtil = object:DiffUtil.ItemCallback<ResponseModelItem>(){
            override fun areItemsTheSame(
@@ -27,8 +31,15 @@ class MainAdapter : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUti
        }
    }
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        val tvPeopleResponseItem = getItem(position)
-        tvPeopleResponseItem?.let {
+        val tvMovieResponseItem = getItem(position)
+        holder.itemView.apply {
+            onClickConstrainLayout.setOnClickListener {
+                val intent= Intent(context, DetailsActivity::class.java)
+                intent.putExtra("name",tvMovieResponseItem?.name)
+                context.startActivity(intent)
+            }
+        }
+        tvMovieResponseItem?.let {
             holder.setData(it)
         }
     }

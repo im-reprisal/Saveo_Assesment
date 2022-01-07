@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ui.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ShowMoreDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

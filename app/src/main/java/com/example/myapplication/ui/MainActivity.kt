@@ -29,13 +29,13 @@ class MainActivity : AppCompatActivity() {
             this,{
                 it?.let {
                     CoroutineScope(Main).launch {
+                        binding.recyclerView.visibility = View.VISIBLE
                         mainAdapter.submitData(it)
                     }
                 }
             }
         )
     }
-
     private fun setAdapter() {
         mainAdapter = MainAdapter()
         val linearLayoutManager = GridLayoutManager(this, 3)

@@ -11,8 +11,9 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.data.models.ResponseModelItem
 import com.example.myapplication.databinding.AdapterItemLayoutBinding
 import com.example.myapplication.ui.DetailsActivity
+import org.jsoup.Jsoup
 
-class MainAdapter(val context: Context) : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
+class MainAdapter(private val context: Context) : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
    companion object{
        val diffUtil = object:DiffUtil.ItemCallback<ResponseModelItem>(){
            override fun areItemsTheSame(
@@ -32,11 +33,22 @@ class MainAdapter(val context: Context) : PagingDataAdapter<ResponseModelItem, M
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val tvMovieResponseItem = getItem(position)
         val itemLayoutBinding = holder.adapterItemLayoutBinding as AdapterItemLayoutBinding
-        Glide.with(context).load(tvMovieResponseItem?.image?.medium).into(itemLayoutBinding.ivImgShow)
+        Glide.with(context).load(tvMovieResponseItem?.image?.original).into(itemLayoutBinding.ivImgShow)
         itemLayoutBinding.onClickCardView.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra("name",tvMovieResponseItem?.name)
+            intent.putExtra("generes1",tvMovieResponseItem?.genres?.indexOf("0"))
+            intent.putExtra("generes2",tvMovieResponseItem?.genres?.indexOf("1"))
+            intent.putExtra("generes3",tvMovieResponseItem?.genres?.indexOf("2"))
+            intent.putExtra("launch",tvMovieResponseItem?.premiered)
+            intent.putExtra("rating",tvMovieResponseItem?.rating?.average.toString())
+            intent.putExtra("imdb",tvMovieResponseItem?.externals?.imdb.toString())
+            intent.putExtra("imgUrl",tvMovieResponseItem?.image?.original)
+            val textFromHtml: String = Jsoup.parse(tvMovieResponseItem?.summary).text()
+            intent.putExtra("summary",textFromHtml)
+
             context.startActivity(intent)
+
         }
     }
 

@@ -52,13 +52,15 @@
 
             <TextView
                 android:id="@+id/tvMovieName"
+                android:letterSpacing="0.08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:textStyle="bold"
                 android:layout_marginTop="25dp"
                 android:text="Movie Name"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toEndOf="@id/cardMovieThumbnail"
                 app:layout_constraintTop_toBottomOf="@id/ivBack" />
 
@@ -66,7 +68,7 @@
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Movie Release Date"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/tvMovieName"
@@ -75,6 +77,7 @@
             <LinearLayout
                 android:id="@+id/llGenres"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="3dp"
                 android:layout_height="wrap_content"
                 android:weightSum="3"
                 app:layout_constraintStart_toStartOf="@id/tvTime"
@@ -234,19 +237,53 @@
             <TextView
                 android:id="@+id/tvSynopsis"
                 android:layout_width="wrap_content"
+                android:letterSpacing="0.16"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Synopsis"
                 android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tvSynopsisData"
                 android:layout_width="match_parent"
+                android:letterSpacing="0.12"
+                android:textSize="16sp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardMovieThumbnail">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/showMoreDetails"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:elevation="40dp"
+                app:cardCornerRadius="20dp"
+                app:cardMaxElevation="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="40dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="15dp"
+                    android:text="Show Details"
+                    android:textColor="@color/black" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
     </LinearLayout>
 </layout>

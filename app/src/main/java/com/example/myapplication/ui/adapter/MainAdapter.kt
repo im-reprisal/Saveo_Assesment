@@ -44,11 +44,10 @@ class MainAdapter(private val context: Context) : PagingDataAdapter<ResponseMode
             intent.putExtra("rating",tvMovieResponseItem?.rating?.average.toString())
             intent.putExtra("imdb",tvMovieResponseItem?.externals?.imdb.toString())
             intent.putExtra("imgUrl",tvMovieResponseItem?.image?.original)
+            intent.putExtra("url",tvMovieResponseItem?.url)
             val textFromHtml: String = Jsoup.parse(tvMovieResponseItem?.summary).text()
             intent.putExtra("summary",textFromHtml)
-
             context.startActivity(intent)
-
         }
     }
 

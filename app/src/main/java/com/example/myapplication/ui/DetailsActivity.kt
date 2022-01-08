@@ -17,6 +17,9 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_details)
 
+        /**
+         * getting all the data through intent from previous activity and setting the data to respective views
+         */
         val storeData = intent.getStringExtra("url")
         val name = intent?.getStringExtra("name")
         val generes1 = intent?.getStringExtra("generes1")
@@ -33,8 +36,10 @@ class DetailsActivity : AppCompatActivity() {
         binding.tvReview.text = "imdb : $imdb"
         binding.tvSynopsisData.text = summary
 
+        /**
+         * on click of button its data will be passed to next activity through intent to show more details
+         */
         binding.showMoreDetails.setOnClickListener {
-
             val intent= Intent(this,ShowMoreDetailsActivity::class.java)
             intent.putExtra("newUrl",storeData)
             startActivity(intent)

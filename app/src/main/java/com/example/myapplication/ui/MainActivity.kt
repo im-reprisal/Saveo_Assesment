@@ -22,8 +22,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        /**
+         * starting the shimmer effect
+         */
         binding.shimmerFrameLayout.startShimmerAnimation()
+
         setAdapter()
+
+        /**
+         * observing each data inside the list using live data
+         */
         mainViewModel.showMovieList().observe(
             this,{
                 it?.let {
@@ -35,6 +44,9 @@ class MainActivity : AppCompatActivity() {
             }
         )
     }
+    /**
+     * setting all the movie in recyclerview
+     */
     private fun setAdapter() {
         mainAdapter = MainAdapter(this)
         val linearLayoutManager = GridLayoutManager(this, 3)

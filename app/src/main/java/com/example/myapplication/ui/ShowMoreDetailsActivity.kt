@@ -15,6 +15,9 @@ class ShowMoreDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_show_more_details)
+        /**
+         * showing more details about each movie into this activity
+         */
         val url = intent?.getStringExtra("newUrl")
         Log.d("adi","$url")
         binding.webView.apply {

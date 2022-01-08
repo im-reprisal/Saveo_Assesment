@@ -14,6 +14,9 @@ import com.example.myapplication.ui.DetailsActivity
 import org.jsoup.Jsoup
 
 class MainAdapter(private val context: Context) : PagingDataAdapter<ResponseModelItem, MainViewHolder>(diffUtil){
+    /**
+     * all data in the list will not be updated,only changed data in the list will be updated.
+     */
    companion object{
        val diffUtil = object:DiffUtil.ItemCallback<ResponseModelItem>(){
            override fun areItemsTheSame(
@@ -34,6 +37,9 @@ class MainAdapter(private val context: Context) : PagingDataAdapter<ResponseMode
         val tvMovieResponseItem = getItem(position)
         val itemLayoutBinding = holder.adapterItemLayoutBinding as AdapterItemLayoutBinding
         Glide.with(context).load(tvMovieResponseItem?.image?.original).into(itemLayoutBinding.ivImgShow)
+        /**
+         * on click of each item its data will be passed to next activity through intent
+         */
         itemLayoutBinding.onClickCardView.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra("name",tvMovieResponseItem?.name)
